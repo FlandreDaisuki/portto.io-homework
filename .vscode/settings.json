@@ -5,5 +5,20 @@
     "cSpell.ignoreWords": [
         "css",
         "windi"
-    ]
+    ],
+    "cSpell.words": [
+        "scroller"
+    ],
+    "scss.validate": false,
+    "css.validate": false,
+    "vetur.validation.style": false,
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "vue"
+    ],
+    "tailwindCSS.includeLanguages": {
+        "vue": "html",
+        "vue-html": "html",
+    },
 }
