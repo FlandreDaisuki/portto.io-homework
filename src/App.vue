@@ -1,24 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <ListPage
+    v-show="isListPage"
+    @details="onDetailsClick"
+  />
+  <DetailsPage
+    v-show="!isListPage"
+    v-bind="detailProps"
+    @back="isListPage=true"
+  />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DetailsPage from './components/DetailsPage.vue';
+import ListPage from './components/ListPage.vue';
+import { ref, watch } from 'vue';
 
 export default {
-  components:{ HelloWorld },
-  setup(){}
-}
+  components: { DetailsPage, ListPage },
+  setup() {
+    const isListPage = ref(true);
+    const detailProps = ref(null);
+    watch(detailProps, () => {
+      isListPage.value = !detailProps.value;
+    });
+    const onDetailsClick = (details) => {
+      detailProps.value = details;
+    };
+    return {
+      isListPage,
+      detailProps,
+      onDetailsClick,
+    };
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
